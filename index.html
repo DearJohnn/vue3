@@ -5,34 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .tabs{
+            display:flex;
+            gap:10px;
+        }
+        .content>div{
+            display:none;
+        }
+    </style>
     <title>Document</title>
 </head>
 <body>
     <div id="app">
-        <div :style="[baseStyle,actStyle]"></div>
-        <button @click="fn">click</button>
+        <div class="tabs">
+            <div @click="show('sports')">Sports News</div>
+            <div @click="show('tech')">Tech News</div>
+            <div @click="show('movie')">Movie News</div>
+        </div>
+        <div class="content">
+            <div :style="{display: activeTab === 'sports' ? 'block' : 'none'}">Sports News Content</div>
+            <div :style="{display: activeTab === 'tech' ? 'block' : 'none'}">Tech News Content</div>
+            <div :style="{display: activeTab === 'movie' ? 'block' : 'none'}">Movie News Content</div>
+        </div>
+        
+        
     </div>
     <script>
         const{createApp} = Vue
         createApp({
             data(){
                 return {
-                    baseStyle:{
-                        width:"100px",
-                        height:"100px",
-                        backgroundColor:"red"
-                    },
-                    actStyle:{
-                        display:"block"
-                    }
+                    activeTab:'sports'
                 }
             },
             methods:{
-                fn(){
-                    this.actStyle.display=this.actStyle.display=="block"?"none":"block"
+                show(tab){
+                    this.activeTab = tab
+                }
                 }
             }
-        }).mount("#app")
+        ).mount("#app")
     </script>
 </body>
 </html>
