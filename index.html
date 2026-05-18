@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div :style="[baseStyle,actStyle]"></div>
+        <button @click="fn">click</button>
+    </div>
+    <script>
+        const{createApp} = Vue
+        createApp({
+            data(){
+                return {
+                    baseStyle:{
+                        width:"100px",
+                        height:"100px",
+                        backgroundColor:"red"
+                    },
+                    actStyle:{
+                        display:"block"
+                    }
+                }
+            },
+            methods:{
+                fn(){
+                    this.actStyle.display=this.actStyle.display=="block"?"none":"block"
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
